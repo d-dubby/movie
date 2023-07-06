@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+    <div class="containter">
+      <div class="nav">
+        <div class="menu">
+          <div class="logo">
+            <h3>Movie<span class="text">Zone</span></h3>
+          </div>
+            <div class="ul">
+            <ul>
+              <li><a href="#">Movie</a></li>
+              <li><a href="#">TV Shows</a></li>
+              <li><a href="#">People</a></li>
+              <li><a href="#">More</a></li>
+            </ul>
+          </div>
+
+            <div class="search">
+              <div class="search-1">
+              <input type="search" placeholder="Search...">
+            </div>
+              <div class="icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <div class="btn">
+                <button><h5>SignUp</h5></button>
+              </div>
+              <div class="setting">
+                <i class="fa-solid fa-bars"></i>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- end navigation -->
+
+      <!-- Box -->
+      <div class="box">
+        <div class="info">
+          <div class="title">
+            <h2>Welcome</h2>
+          <h3>Millions of movies, TV shows and people to discover.
+          Explore now.</h3>
+        </div>
+          <div class="input-search">
+            <input type="search" placeholder="Search for a movie, TV show...">
+            <div class="search-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end box -->
+
+      <!-- movie poster -->
+      <div class="movie-poster">
+        <div class="div-pos">
+            <div class="poster1">
+                <div id="img">
+                  
+                </div>
+            </div>
+            <!-- <div class="poster1">
+                <div id="img">
+
+                </div>
+                <div class="info-movie">
+                  <p>Title</p>
+                  <p>date</p>
+                </div>
+            </div>
+            <div class="poster1">
+                <div id="img">
+
+                </div>
+                <div class="info-movie">
+                  <p>Title</p>
+                  <p>date</p>
+                </div>
+            </div>
+            <div class="poster1">
+                <div id="img">
+
+                </div>
+                <div class="info-movie">
+                  <p>Title</p>
+                  <p>date</p>
+                </div>
+            </div>
+            <div class="poster1">
+                <div id="img">
+
+                </div>
+                <div class="info-movie">
+                  <p>Title</p>
+                  <p>date</p>
+                </div>
+            </div> -->
+         
+        </div>
+      </div>
+
+
+
+    </div>
+   
+</body>
+  <script>
+function movie() {
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMWI0MzhhOGZjMGU1OTIzMzJlYzI4MTQyNzNkZDU2MCIsInN1YiI6IjY0YTRiYzE0MTU4Yzg1MDBmZmI5ZmY5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0jsmBGbNAn28YfrbNlMJ0cRi8U0pdqRRT5k7z_A3gB0'
+    }
+  };
+
+  fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', options)
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      const results = response.results;
+      const a = document.getElementById('img');
+      for (const movie of results) {
+        a.innerHTML+=`<li><img src="https://www.themoviedb.org/t/p/original/${movie.poster_path}"><h3>${movie.title}</h3><p>${movie.release_date}</p></li>`;
+      }
+    })
+    .catch(error => {
+      console.error('Error', error);
+    });
+}
+
+movie();
+
+      
+  </script>
+  <!-- <img src="" style="width: 200; height: 300;" alt=""> -->
+</html>
